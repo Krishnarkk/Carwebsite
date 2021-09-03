@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet"> -->
+         <!-- <link rel="stylesheet" type="text/css" href="car.css"> -->
+         <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <a href="car.html">  <h1>Home</h1></a> 
+ 
+ <script>
+          // API for get requests
+          let Result = fetch("https://private-anon-4f37edf185-carsapi1.apiary-mock.com/manufacturers");
+ Result.then(res =>
+            res.json()).then(data => {
+                console.log(data)
+            
+              if(data.length>0){
+                  var temp='';
+
+                  data.map((u)=>{
+              temp+="<tr>";
+               temp+="<td>"+u.id+"</td>"
+               temp+="<td>"+u.avg_horsepower+"</td>"
+               temp+="<td><img src="+u.img_url+"/>"+"</td>"
+               temp+="<td>"+u.name+"</td>"
+               temp+="<td>"+u.avg_price+"</td>"
+
+                  })
+                  document.getElementById('data').innerHTML=temp;
+              }
+            }).catch((err)=>{
+                console.log(err)
+            });
+       
+ </script>
+ 
+ <div style="width:80vw;margin-left: 10%;margin-top: 3%;">
+    <h2 style="text-align: center;color:brown">Our Top List</h2>
+ <table  class="table table-responsive-sm table-striped" border="1" id="table">
+ <thead class="thead-dark">  
+  <th>ID</th>
+  <th>Power</th>
+  <th>Image</th>
+  <th>Name</th>
+  <th>Price</th>
+</thead>
+ <tbody id="data">
+     </tbody>
+</table>
+</div>
+</body>
+</html>
